@@ -9,12 +9,18 @@ const services = [
 ];
 
 const tarifs = [
-  ['Diagnostic', 'à partir de 19 €'],
-  ['Réglage freins', 'à partir de 25 €'],
-  ['Crevaison', 'à partir de 29 €'],
-  ['Entretien complet', 'à partir de 59 €'],
-  ['Batterie / moteur', 'sur devis'],
-  ['Intervention à domicile', 'selon secteur']
+  { label: 'Diagnostic trottinette < 500W', price: '20 €', detail: 'Recherche de panne, contrôle de base et orientation de réparation.' },
+  { label: 'Diagnostic trottinette > 500W', price: '60 €', detail: 'Diagnostic renforcé pour modèles puissants et pannes plus complexes.' },
+  { label: 'Crevaison / chambre à air', price: '30 €', detail: 'Changement de chambre à air. Le pneu est en supplément si nécessaire.' },
+  { label: 'Frein à câble', price: '15 €', detail: 'Réglage, contrôle et resserrage du frein à câble.' },
+  { label: 'Frein double', price: '20 €', detail: 'Réglage et contrôle du freinage double.' },
+  { label: 'Frein hydraulique simple', price: '30 €', detail: 'Réglage et contrôle d’un frein hydraulique simple.' },
+  { label: 'Frein hydraulique double', price: '40 €', detail: 'Réglage et contrôle d’un freinage hydraulique double.' },
+  { label: 'Remplacement plaquettes', price: '15 €', detail: 'Si les plaquettes sont déjà en votre possession.' },
+  { label: 'Plaquettes vendues', price: '+5 €', detail: 'Supplément si les plaquettes sont fournies par Bob’Répar.' },
+  { label: 'Main d’œuvre trott < 500W', price: '20 €', detail: 'Main d’œuvre hors pièces pour trottinette inférieure à 500W.' },
+  { label: 'Main d’œuvre trott > 500W', price: '60 €', detail: 'Main d’œuvre hors pièces pour trottinette supérieure à 500W.' },
+  { label: 'Entretien / révision / nettoyage', price: '50 €', detail: 'Contrôle général, resserrage, nettoyage et conseils personnalisés.' }
 ];
 
 const photos = [
@@ -154,16 +160,17 @@ export default function Home() {
 
       <section id="tarifs" className="section">
         <p className="eyebrow">Tarifs</p>
-        <h2>Des repères simples avant devis final.</h2>
+        <h2>Des prix clairs avant devis final.</h2>
         <div className="tarifs">
-          {tarifs.map(([label, price]) => (
-            <article key={label}>
-              <span>{label}</span>
-              <strong>{price}</strong>
+          {tarifs.map((tarif) => (
+            <article key={tarif.label}>
+              <span>{tarif.label}</span>
+              <strong>{tarif.price}</strong>
+              <p>{tarif.detail}</p>
             </article>
           ))}
         </div>
-        <p className="note">Les tarifs sont indicatifs et peuvent varier selon le modèle, les pièces et l’état de la trottinette.</p>
+        <p className="note">Les prix indiqués correspondent à la main d’œuvre ou au service précisé. Les pièces et pneus peuvent être facturés en supplément selon le modèle.</p>
       </section>
 
       <section id="contact" className="section contact">
