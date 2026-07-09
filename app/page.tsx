@@ -219,7 +219,7 @@ export default function Home() {
             </a>
           ))}
         </div>
-        <a className="button primary" href="mailto:bobrepare44@gmail.com">bobrepare44@gmail.com</a>
+        <a className="button primary" href="mailto:bobrepar.pro@gmail.com">bobrepar.pro@gmail.com</a>
         <div className="hashtags">#BobRepar #TrottinetteElectrique #ReparationTrottinette #IleDeNantes #Nantes</div>
       </section>
 
@@ -231,7 +231,7 @@ export default function Home() {
         <div className="footerInfo">
           <span>Adresse : Île de Nantes</span>
           <a href="tel:+33744145319">07 44 14 53 19</a>
-          <a href="mailto:bobrepare44@gmail.com">bobrepare44@gmail.com</a>
+          <a href="mailto:bobrepar.pro@gmail.com">bobrepar.pro@gmail.com</a>
         </div>
         <div className="footerSocials">
           {contactLinks.slice(1).map((link) => (
