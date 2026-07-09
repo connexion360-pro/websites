@@ -3,6 +3,7 @@ const services = [
   { title: 'Crevaison', text: 'Réparation ou remplacement de chambre à air, pneu plein ou pneu gonflable selon le modèle.' },
   { title: 'Freins', text: 'Réglage, plaquettes, disque, câble et contrôle du freinage pour rouler en sécurité.' },
   { title: 'Batterie', text: 'Contrôle de charge, autonomie, connectiques et conseils avant remplacement.' },
+  { title: 'Contrôleur', text: 'Diagnostic du contrôleur, accélération irrégulière, coupures, perte de puissance et lecture des codes erreurs.' },
   { title: 'Moteur', text: 'Diagnostic moteur roue, perte de puissance, bruit anormal ou problème d’accélération.' },
   { title: 'Entretien complet', text: 'Révision, serrages, sécurité, nettoyage technique et conseils personnalisés.' }
 ];
@@ -27,7 +28,22 @@ const photos = [
   { label: 'Pièces de freinage', src: '/photos/disques-frein.jpg' }
 ];
 
+const brands = ['Xiaomi', 'Ninebot', 'Segway', 'Dualtron', 'Speedway', 'Kaabo', 'Vsett', 'Minimotors', 'Inokim', 'E-Twow', 'Wispeed', 'UrbanGlide', 'Navee', 'Kugoo', 'Nami', 'Teverun'];
+
+const contactLinks = [
+  { label: 'Téléphone', value: '07 44 14 53 19', href: 'tel:+33744145319', icon: '☎' },
+  { label: 'WhatsApp', value: 'Écrire sur WhatsApp', href: 'https://wa.me/33744145319', icon: '✆' },
+  { label: 'Instagram', value: '@bob.repar', href: 'https://www.instagram.com/bob.repar?igsh=MXhtOWRqeWl0MzRibg==', icon: '◎' },
+  { label: 'Facebook', value: 'Page Bob’Répar', href: 'https://www.facebook.com/share/1AaP5fsixz/', icon: 'f' },
+  { label: 'Post Facebook', value: 'Publication à partager', href: 'https://www.facebook.com/share/p/1CqQQPG5i5/', icon: 'f+' },
+  { label: 'Snapchat', value: 'bobrepar', href: 'https://www.snapchat.com/add/bobrepar?share_id=lG7EWtiueWQ&locale=fr-FR', icon: '👻' },
+  { label: 'AlloVoisins', value: 'Profil Bob’Répar', href: 'https://www.allovoisins.com/p/bobrepar?from=offreurs&utm_source=product_transactionnel&utm_medium=share&utm_campaign=profile', icon: 'AV' },
+  { label: 'Nextdoor', value: 'Voir le profil', href: 'https://fr.nextdoor.com/!SJJZQW', icon: 'N' }
+];
+
 export default function Home() {
+  const marqueeBrands = [...brands, ...brands];
+
   return (
     <main>
       <header className="header">
@@ -62,22 +78,30 @@ export default function Home() {
             Bob’Répar remet votre trottinette en état rapidement pour que vous puissiez reprendre la route en toute sécurité.
           </p>
           <p>
-            Panne, crevaison, freins, batterie, moteur ou entretien complet : diagnostic clair, réparation soignée et conseils personnalisés.
+            Panne, crevaison, freins, batterie, moteur, contrôleur ou entretien complet : diagnostic clair, réparation soignée et conseils personnalisés.
           </p>
           <div className="actions">
-            <a className="button primary" href="mailto:bobrepare44@gmail.com">Contacter Bob’Répar</a>
-            <a className="button secondary" href="#galerie">Voir l’atelier</a>
+            <a className="button primary" href="tel:+33744145319">Appeler Bob’Répar</a>
+            <a className="button secondary" href="https://wa.me/33744145319" target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
           <ul className="proofs">
-            <li>Atelier situé sur l’Île de Nantes</li>
+            <li>Adresse : Île de Nantes</li>
             <li>Diagnostic & réparations</li>
             <li>Service rapide et soigné</li>
             <li>Conseils personnalisés</li>
           </ul>
         </div>
         <div className="heroVisual photoHero" style={{ backgroundImage: `linear-gradient(180deg, rgba(5,5,5,.16), rgba(5,5,5,.72)), url(${photos[0].src})` }} aria-label="Atelier Bob’Répar">
-          <div className="badge">Service rapide</div>
+          <div className="badge">07 44 14 53 19</div>
           <div className="heroCaption">Atelier, diagnostic et réparations sur l’Île de Nantes</div>
+        </div>
+      </section>
+
+      <section className="brandMarquee" aria-label="Marques de trottinettes électriques">
+        <div className="marqueeTrack">
+          {marqueeBrands.map((brand, index) => (
+            <span key={`${brand}-${index}`}>{brand}</span>
+          ))}
         </div>
       </section>
 
@@ -101,6 +125,10 @@ export default function Home() {
           <p>
             L’atelier est situé sur l’Île de Nantes. Vous pouvez venir sur rendez-vous, ou demander une intervention à domicile lorsque la panne le permet.
           </p>
+          <div className="addressCard">
+            <strong>Adresse</strong>
+            <span>Île de Nantes</span>
+          </div>
         </div>
         <div className="photoGrid">
           {photos.slice(1, 4).map((photo) => (
@@ -141,10 +169,38 @@ export default function Home() {
       <section id="contact" className="section contact">
         <p className="eyebrow">Contact</p>
         <h2>Envoyez une photo, le modèle et la panne.</h2>
-        <p>Contact par Instagram : Bob Répare. Téléphone bientôt disponible.</p>
+        <p>Adresse : Île de Nantes. Appel, WhatsApp, Instagram, Facebook, Snapchat, AlloVoisins ou Nextdoor.</p>
+        <div className="contactGrid">
+          {contactLinks.map((link) => (
+            <a className="contactCard" href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined} key={link.label}>
+              <span className="contactIcon">{link.icon}</span>
+              <small>{link.label}</small>
+              <strong>{link.value}</strong>
+            </a>
+          ))}
+        </div>
         <a className="button primary" href="mailto:bobrepare44@gmail.com">bobrepare44@gmail.com</a>
         <div className="hashtags">#BobRepar #TrottinetteElectrique #ReparationTrottinette #IleDeNantes #Nantes</div>
       </section>
+
+      <footer className="footer">
+        <div>
+          <a className="footerBrand" href="#accueil"><span>Bob’</span>Répar</a>
+          <p>Réparation de trottinettes électriques sur l’Île de Nantes.</p>
+        </div>
+        <div className="footerInfo">
+          <span>Adresse : Île de Nantes</span>
+          <a href="tel:+33744145319">07 44 14 53 19</a>
+          <a href="mailto:bobrepare44@gmail.com">bobrepare44@gmail.com</a>
+        </div>
+        <div className="footerSocials">
+          {contactLinks.slice(1).map((link) => (
+            <a href={link.href} target="_blank" rel="noreferrer" key={`footer-${link.label}`} aria-label={link.label}>
+              {link.icon}
+            </a>
+          ))}
+        </div>
+      </footer>
     </main>
   );
 }
