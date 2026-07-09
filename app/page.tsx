@@ -31,7 +31,20 @@ export default function Home() {
   return (
     <main>
       <header className="header">
-        <a className="brand" href="#accueil"><span>Bob’</span>Répar</a>
+        <a
+          className="brand"
+          href="#accueil"
+          aria-label="Bob’Répar - retour à l’accueil"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: '.65rem' }}
+        >
+          <img
+            src="/logo-bob-repar.svg"
+            alt=""
+            aria-hidden="true"
+            style={{ width: '4.25rem', height: '3rem', objectFit: 'contain' }}
+          />
+          <span>Bob’</span>Répar
+        </a>
         <nav>
           <a href="#services">Services</a>
           <a href="#atelier">Atelier</a>
