@@ -36,6 +36,25 @@ const photos = [
 
 const brands = ['Xiaomi', 'Ninebot', 'Segway', 'Dualtron', 'Speedway', 'Kaabo', 'Vsett', 'Minimotors', 'Inokim', 'E-Twow', 'Wispeed', 'UrbanGlide', 'Navee', 'Kugoo', 'Nami', 'Teverun'];
 
+const faqs = [
+  {
+    question: 'Quelles marques de trottinettes acceptez-vous ?',
+    answer: 'Bob’Répar accepte toutes les marques de trottinettes électriques, en fonction de la disponibilité des pièces et de la faisabilité de la réparation.'
+  },
+  {
+    question: 'Faut-il prendre rendez-vous ?',
+    answer: 'Oui, il est préférable de prendre contact avant de passer afin de prévoir un créneau de diagnostic ou de réparation.'
+  },
+  {
+    question: 'Pouvez-vous intervenir à domicile ?',
+    answer: 'Une intervention à domicile est possible selon la panne, le secteur et le planning. Le plus simple est d’envoyer une photo, le modèle et les symptômes.'
+  },
+  {
+    question: 'Les pièces sont-elles comprises dans les tarifs ?',
+    answer: 'Les tarifs affichés concernent le service ou la main d’œuvre indiquée. Les pièces, pneus ou consommables peuvent être facturés en supplément selon le modèle.'
+  }
+];
+
 const contactLinks = [
   { label: 'Téléphone', value: '07 44 14 53 19', href: 'tel:+33744145319', icon: '☎' },
   { label: 'WhatsApp', value: 'Écrire sur WhatsApp', href: 'https://wa.me/33744145319', icon: '✆' },
@@ -72,6 +91,7 @@ export default function Home() {
           <a href="#atelier">Atelier</a>
           <a href="#galerie">Galerie</a>
           <a href="#tarifs">Tarifs</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
@@ -148,7 +168,7 @@ export default function Home() {
       <section id="galerie" className="section gallerySection">
         <p className="eyebrow">Galerie</p>
         <h2>L’univers Bob’Répar en images.</h2>
-        <p className="galleryIntro">Atelier, batteries, freins, pièces, outils et trottinettes : une présentation visuelle plus concrète du travail réalisé.</p>
+        <p className="galleryIntro">Atelier, batteries, freins, pièces, outils et trottinettes : une présentation visuelle du travail réalisé.</p>
         <div className="gallery">
           {photos.map((photo) => (
             <figure className="galleryCard" key={photo.src} style={{ backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0), rgba(5,5,5,.78)), url(${photo.src})` }}>
@@ -160,7 +180,7 @@ export default function Home() {
 
       <section id="tarifs" className="section">
         <p className="eyebrow">Tarifs</p>
-        <h2>Des prix clairs avant devis final.</h2>
+        <h2>Des prix clairs avant intervention.</h2>
         <div className="tarifs">
           {tarifs.map((tarif) => (
             <article key={tarif.label}>
@@ -171,6 +191,19 @@ export default function Home() {
           ))}
         </div>
         <p className="note">Les prix indiqués correspondent à la main d’œuvre ou au service précisé. Les pièces et pneus peuvent être facturés en supplément selon le modèle.</p>
+      </section>
+
+      <section id="faq" className="section faqSection">
+        <p className="eyebrow">FAQ</p>
+        <h2>Questions fréquentes.</h2>
+        <div className="faqGrid">
+          {faqs.map((faq) => (
+            <article className="faqCard" key={faq.question}>
+              <h3>{faq.question}</h3>
+              <p>{faq.answer}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section id="contact" className="section contact">
