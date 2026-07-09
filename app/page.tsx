@@ -16,6 +16,17 @@ const tarifs = [
   ['Intervention à domicile', 'selon secteur']
 ];
 
+const photos = [
+  { label: 'Atelier Bob’Répar', src: '/photos/atelier-orange-noir.png' },
+  { label: 'Diagnostic batterie', src: '/photos/batterie-trottinette.png' },
+  { label: 'Trottinette en atelier', src: '/photos/trottinette-atelier.png' },
+  { label: 'Outillage professionnel', src: '/photos/outillage-atelier.png' },
+  { label: 'Disques de frein', src: '/photos/disques-frein-portrait.png' },
+  { label: 'Trottinette sportive', src: '/photos/trottinette-exterieur.png' },
+  { label: 'Pièces détachées', src: '/photos/pieces-detachees.png' },
+  { label: 'Pièces de freinage', src: '/photos/disques-frein.jpg' }
+];
+
 export default function Home() {
   return (
     <main>
@@ -24,6 +35,7 @@ export default function Home() {
         <nav>
           <a href="#services">Services</a>
           <a href="#atelier">Atelier</a>
+          <a href="#galerie">Galerie</a>
           <a href="#tarifs">Tarifs</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -41,7 +53,7 @@ export default function Home() {
           </p>
           <div className="actions">
             <a className="button primary" href="mailto:bobrepare44@gmail.com">Contacter Bob’Répar</a>
-            <a className="button secondary" href="#tarifs">Voir les tarifs</a>
+            <a className="button secondary" href="#galerie">Voir l’atelier</a>
           </div>
           <ul className="proofs">
             <li>Atelier situé sur l’Île de Nantes</li>
@@ -50,9 +62,9 @@ export default function Home() {
             <li>Conseils personnalisés</li>
           </ul>
         </div>
-        <div className="heroVisual" aria-label="Illustration trottinette">
+        <div className="heroVisual photoHero" style={{ backgroundImage: `linear-gradient(180deg, rgba(5,5,5,.16), rgba(5,5,5,.72)), url(${photos[0].src})` }} aria-label="Atelier Bob’Répar">
           <div className="badge">Service rapide</div>
-          <div className="scooter"><span className="wheel left"/><span className="wheel right"/><span className="deck"/><span className="bar"/><span className="handle"/></div>
+          <div className="heroCaption">Atelier, diagnostic et réparations sur l’Île de Nantes</div>
         </div>
       </section>
 
@@ -78,9 +90,24 @@ export default function Home() {
           </p>
         </div>
         <div className="photoGrid">
-          <div>Atelier</div>
-          <div>Diagnostic</div>
-          <div>Réparation</div>
+          {photos.slice(1, 4).map((photo) => (
+            <div className="photoTile" key={photo.src} style={{ backgroundImage: `linear-gradient(180deg, rgba(5,5,5,.05), rgba(5,5,5,.72)), url(${photo.src})` }}>
+              <span>{photo.label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="galerie" className="section gallerySection">
+        <p className="eyebrow">Galerie</p>
+        <h2>L’univers Bob’Répar en images.</h2>
+        <p className="galleryIntro">Atelier, batteries, freins, pièces, outils et trottinettes : une présentation visuelle plus concrète du travail réalisé.</p>
+        <div className="gallery">
+          {photos.map((photo) => (
+            <figure className="galleryCard" key={photo.src} style={{ backgroundImage: `linear-gradient(180deg, rgba(5,5,5,0), rgba(5,5,5,.78)), url(${photo.src})` }}>
+              <figcaption>{photo.label}</figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
