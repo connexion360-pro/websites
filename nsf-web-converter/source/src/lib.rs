@@ -192,6 +192,7 @@ pub fn convert_nsf(
     }
 
     zip.finish().map_err(zip_error)?;
+    drop(zip);
     Ok(output.into_inner())
 }
 
@@ -516,7 +517,7 @@ fn build_eml(
             format!("Content-Disposition: attachment; filename=\"{}\"\r\n\r\n", header_safe(&filename))
                 .as_bytes(),
         );
-        let encoded = BASE64.encode(att.data.as_ref());
+        let encoded = BASE64.encode(att.data.as_slice());
         for chunk in encoded.as_bytes().chunks(76) {
             out.extend_from_slice(chunk);
             out.extend_from_slice(b"\r\n");
