@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="description" content="Convertisseur NSF gratuit et local dans le navigateur, basé sur sherlock-nsf-parser." />
+  <title>NSF Web Converter</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow">100 % local · open source · sans Lotus Notes</div>
+      <h1>Convertir un fichier <span>.NSF</span> sans l’envoyer sur Internet</h1>
+      <p class="lead">
+        Dépose ton archive Lotus Notes / HCL Notes. La conversion s’exécute dans ton navigateur grâce à WebAssembly.
+        Ton fichier reste sur ton appareil.
+      </p>
+    </section>
+
+    <section class="converter card" aria-labelledby="converter-title">
+      <div class="card-heading">
+        <div>
+          <h2 id="converter-title">1. Choisir le fichier</h2>
+          <p>.nsf, .ntf ou .nsg · aucun compte requis</p>
+        </div>
+        <span class="privacy-badge">Traitement local</span>
+      </div>
+
+      <label class="dropzone" id="dropzone" for="fileInput">
+        <input id="fileInput" type="file" accept=".nsf,.ntf,.nsg,application/octet-stream" />
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 13.5v4A2.5 2.5 0 0 0 7.5 20h9a2.5 2.5 0 0 0 2.5-2.5v-4"/></svg>
+        <strong id="dropTitle">Glisse ton fichier ici</strong>
+        <span id="dropSubtitle">ou clique pour le sélectionner</span>
+      </label>
+
+      <div class="selected-file" id="selectedFile" hidden>
+        <div class="file-icon">NSF</div>
+        <div class="file-meta">
+          <strong id="fileName"></strong>
+          <span id="fileSize"></span>
+        </div>
+        <button id="clearFile" type="button" class="ghost-button">Changer</button>
+      </div>
+
+      <div class="formats">
+        <h2>2. Choisir les exports</h2>
+        <div class="format-grid">
+          <label><input type="checkbox" data-format="eml" checked><span><b>EML</b><small>Un fichier par document Lotus, avec pièces jointes</small></span></label>
+          <label><input type="checkbox" data-format="mbox" checked><span><b>MBOX</b><small>Documents Lotus regroupés pour import dans un client mail</small></span></label>
+          <label><input type="checkbox" data-format="json" checked><span><b>JSON</b><small>Toutes les notes résolues, valeurs rendues + octets bruts</small></span></label>
+          <label><input type="checkbox" data-format="attachments" checked><span><b>Pièces jointes</b><small>Fichiers extraits dans des dossiers par NoteID</small></span></label>
+          <label><input type="checkbox" data-format="csv" checked><span><b>CSV</b><small>Index rapide : sujet, expéditeur, destinataires, date</small></span></label>
+        </div>
+      </div>
+
+      <button id="convertButton" class="primary-button" type="button" disabled>
+        <span class="button-label">Convertir et télécharger le ZIP</span>
+        <span class="spinner" aria-hidden="true"></span>
+      </button>
+
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="info-grid">
+      <article class="card mini-card">
+        <span class="number">01</span>
+        <h3>Privé par conception</h3>
+        <p>Le fichier est lu en mémoire par le navigateur. Aucun upload, aucune API et aucun stockage serveur.</p>
+      </article>
+      <article class="card mini-card">
+        <span class="number">02</span>
+        <h3>Export vérifiable</h3>
+        <p>Le ZIP inclut un manifeste avec SHA-256 du fichier source, nombre de notes vérifiées et compteur des entrées non résolues.</p>
+      </article>
+      <article class="card mini-card">
+        <span class="number">03</span>
+        <h3>Limites connues</h3>
+        <p>Les NSF chiffrés ne sont pas déchiffrés. Certains très anciens variants de pièces jointes peuvent rester partiellement pris en charge.</p>
+      </article>
+    </section>
+
+    <section class="technical card">
+      <div>
+        <h2>Comment ça marche ?</h2>
+        <p>
+          Le cœur utilise <code>sherlock-nsf-parser</code>, un lecteur NSF Rust en lecture seule. Il parcourt les notes,
+          résout leurs champs, reconstruit le texte riche et extrait les objets joints lorsque le format est pris en charge.
+        </p>
+      </div>
+      <a href="https://github.com/Sherlock-Forensics/sherlock-nsf-parser" target="_blank" rel="noreferrer">Voir le parseur source ↗</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>NSF Web Converter · non affilié à IBM, HCL ou Sherlock Forensics.</p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

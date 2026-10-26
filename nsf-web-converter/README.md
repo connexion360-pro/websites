@@ -1,10 +1,13 @@
-# NSF Web Converter — archive
+# NSF Web Converter
 
-Archive complète du projet NSF Web Converter, déposée ici pour téléchargement via GitHub.
+Le code source complet est dans [`source/`](./source/).
 
-- Fichier : `nsf-web-converter.zip`
-- SHA-256 : `76a0da00b18020ce0db428c3518603174e1e657a89a3300503f39874069826fa`
-- Le projet utilise `sherlock-nsf-parser` et traite les fichiers NSF côté navigateur via WebAssembly.
-- Le ZIP contient le code source, le front web, les licences et un workflow GitHub Pages.
+Le projet convertit des fichiers IBM/HCL Lotus Notes `.nsf` directement dans le navigateur via WebAssembly et `sherlock-nsf-parser`, sans upload serveur.
 
-Le fichier NSF d'un utilisateur n'est pas envoyé vers un serveur par l'application : le traitement est prévu côté navigateur.
+## Utiliser ce projet
+
+Télécharge ou clone ce dépôt, puis copie le contenu du dossier `nsf-web-converter/source/` dans un nouveau dépôt GitHub dédié.
+
+Le workflow `source/.github/workflows/deploy-pages.yml` est prévu pour fonctionner lorsque le contenu de `source/` se trouve à la racine de ce nouveau dépôt.
+
+Le ZIP binaire n’est volontairement pas conservé ici : l’intégration utilisée pour l’upload binaire n’a pas garanti l’intégrité de l’archive. Le code source, lui, a été vérifié avec les SHA Git de chaque fichier.
